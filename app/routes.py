@@ -1,9 +1,7 @@
-
-
 from app import app
 from flask import render_template, redirect, url_for, flash
 from fake_data import posts
-from app.forms import SignUpForm
+from app.forms import SignUpForm, LoginFrom
 
 @app.route('/')
 def index():
@@ -31,4 +29,5 @@ def signup():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    form = LoginFrom()
+    return render_template('login.html', form=form)
