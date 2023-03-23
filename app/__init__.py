@@ -14,6 +14,7 @@ db = SQLAlchemy(app)
 # Create an instance of Migrate that will track our db and app
 migrate = Migrate(app, db)
 
+# Create an instance of the LoginManager to set up Authentication
 login = LoginManager(app)
 
 
