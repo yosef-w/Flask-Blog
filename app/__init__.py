@@ -16,6 +16,7 @@ migrate = Migrate(app, db)
 
 # Create an instance of the LoginManager to set up Authentication
 login = LoginManager(app)
+# Tell the login manager where to redirect if a user is not logged in
 login.login_view = 'login'
 # login.login_message = "Hey you can't do that!"
 login.login_message_category = 'danger'
