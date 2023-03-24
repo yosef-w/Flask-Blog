@@ -24,3 +24,7 @@ class PostForm(FlaskForm):
     body = TextAreaField('Body', validators=[InputRequired()])
     image_url = StringField('Image URL')
     submit = SubmitField('Create Post')
+
+class SearchForm(FlaskForm):
+    search_term = StringField('Search Term')
+    submit = SubmitField('Search')

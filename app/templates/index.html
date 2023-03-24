@@ -70,10 +70,11 @@
                 <div class="card mt-3">
                     <div class="card-header">Search</div>
                     <div class="card-body">
-                        <form action="">
+                        <form action="" method="post">
+                            {{ form.csrf_token }}
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter Search Term...">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                {{ form.search_term(class="form-control", placeholder="Enter Search Term...")}}
+                                {{ form.submit(class="btn btn-primary") }}
                             </div>
                         </form>
                     </div>

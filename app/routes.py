@@ -1,14 +1,19 @@
 from app import app, db
 from flask import render_template, redirect, url_for, flash
 # from fake_data import posts
-from app.forms import SignUpForm, LoginForm, PostForm
+from app.forms import SignUpForm, LoginForm, PostForm, SearchForm
 from app.models import User, Post
 from flask_login import login_user, logout_user, login_required, current_user
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index():
     posts = Post.query.all()
-    return render_template('index.html', posts=posts)
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_term = form.search_term.data
+        # posts = Post.query.filter(Post.title.ilike(f"%{search_term}%")).all()
+        posts = db.session.execute(db.select(Post).where((Post.title.ilike(f"%{search_term}%")) | (Post.body.ilike(f"%{search_term}%")))).scalars().all()
+    return render_template('index.html', posts=posts, form=form)
 
 
 @app.route('/signup', methods=["GET", "POST"])
